@@ -1,0 +1,8 @@
+{
+  "project_id": "nutrio-clone",
+  "app_sail": {
+    "source": ".",
+    "env": "nodejs",
+    "command": "npm run start"
+  }
+}

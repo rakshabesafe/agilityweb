@@ -1,20 +1,51 @@
+import Link from "next/link";
+import ProductCard from "@/components/ProductCard";
+import { products } from "@/data/products";
+
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-      <h1 className="font-display text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl mb-6">
-        Ayurveda-powered functional bars.
-      </h1>
-      <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto mb-10">
-        Six functional bars for immunity, energy, focus, stamina, skin glow &amp; women&apos;s wellness. No refined sugar. No preservatives. 100% natural extracts.
-      </p>
-      <div className="flex gap-4">
-        <button className="rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transition-colors">
-          Shop All Bars
-        </button>
-        <button className="rounded-full bg-orange-100 px-8 py-3 text-sm font-semibold text-orange-800 shadow-sm hover:bg-orange-200 transition-colors">
-          Explore Bundles
-        </button>
-      </div>
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[oklch(0.97_0.02_90)] px-4 py-20 sm:px-6 lg:px-8 text-center min-h-[80vh] flex flex-col justify-center items-center">
+        <h1 className="font-display text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl mb-6 max-w-4xl mx-auto">
+          Functional Bars rooted in Ayurveda.
+        </h1>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+          Six functional bars for immunity, energy, focus, stamina, skin glow &amp; women&apos;s wellness. No refined sugar. No preservatives. 100% natural extracts.
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <Link href="/shop" className="rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transition-colors">
+            Shop All Bars
+          </Link>
+          <Link href="/bundles" className="rounded-full bg-white border border-gray-300 px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors">
+            Explore Bundles
+          </Link>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl w-full">
+        <div className="mb-12 text-center">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Meet the Functional Family
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Targeted nutrition for every need.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {products.slice(0, 3).map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="/shop" className="inline-flex rounded-full bg-gray-100 px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 transition-colors">
+            View all 6 flavours
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
