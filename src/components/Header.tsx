@@ -1,8 +1,12 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShoppingBag, Menu } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function Header() {
+  const { setIsCartOpen, cartCount } = useCart();
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -34,9 +38,17 @@ export default function Header() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <button className="relative inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:opacity-90 bg-orange-600 text-white">
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:opacity-90 bg-orange-600 text-white"
+          >
             <ShoppingBag className="h-4 w-4" />
             <span className="hidden sm:inline">Cart</span>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
           </button>
           <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden">
             <Menu className="h-5 w-5" />
