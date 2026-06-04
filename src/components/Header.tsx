@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Menu } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export default function Header() {
   const { setIsCartOpen, cartCount } = useCart();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -50,11 +53,54 @@ export default function Header() {
               </span>
             )}
           </button>
-          <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden">
-            <Menu className="h-5 w-5" />
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-16 left-0 w-full bg-[#FAF5E6] border-b border-border/60 flex flex-col p-6 gap-6 shadow-md shadow-black/5 z-50">
+          <Link
+            href="/shop"
+            className="text-base font-medium text-foreground transition-colors hover:text-primary"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Shop Bars
+          </Link>
+          <Link
+            href="/bundles"
+            className="text-base font-medium text-foreground transition-colors hover:text-primary"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Bundles &amp; Gifting
+          </Link>
+          <Link
+            href="/learn"
+            className="text-base font-medium text-foreground transition-colors hover:text-primary"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Learn
+          </Link>
+          <Link
+            href="/coming-soon"
+            className="text-base font-medium text-foreground transition-colors hover:text-primary"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Coming Soon
+          </Link>
+          <Link
+            href="/about"
+            className="text-base font-medium text-foreground transition-colors hover:text-primary"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
