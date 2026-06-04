@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
+import { useSite } from '@/context/SiteContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 

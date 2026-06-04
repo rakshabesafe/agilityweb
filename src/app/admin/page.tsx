@@ -1,0 +1,61 @@
+"use client";
+
+import { useState } from 'react';
+import ProductList from '@/components/admin/ProductList';
+import BundleList from '@/components/admin/BundleList';
+import SettingsForm from '@/components/admin/SettingsForm';
+import ShiprocketForm from '@/components/admin/ShiprocketForm';
+
+export default function AdminPage() {
+  const [activeTab, setActiveTab] = useState('products');
+
+  return (
+    <div className="flex h-screen bg-gray-50 overflow-hidden">
+      {/* Sidebar */}
+      <div className="w-64 bg-gray-900 text-white flex flex-col">
+        <div className="p-4 border-b border-gray-800">
+          <h1 className="text-xl font-bold">Nutrio Admin</h1>
+        </div>
+        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+          <button
+            onClick={() => setActiveTab('products')}
+            className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'products' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+          >
+            Products
+          </button>
+          <button
+            onClick={() => setActiveTab('bundles')}
+            className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'bundles' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+          >
+            Bundles
+          </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'settings' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+          >
+            Settings
+          </button>
+          <button
+            onClick={() => setActiveTab('shiprocket')}
+            className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'shiprocket' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+          >
+            Shiprocket Config
+          </button>
+        </nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <header className="bg-white border-b border-gray-200 p-4">
+          <h2 className="text-xl font-semibold text-gray-800 capitalize">{activeTab} Management</h2>
+        </header>
+        <main className="flex-1 overflow-y-auto p-6">
+          {activeTab === 'products' && <ProductList />}
+          {activeTab === 'bundles' && <BundleList />}
+          {activeTab === 'settings' && <SettingsForm />}
+          {activeTab === 'shiprocket' && <ShiprocketForm />}
+        </main>
+      </div>
+    </div>
+  );
+}

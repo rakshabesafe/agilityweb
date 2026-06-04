@@ -22,3 +22,29 @@ body {
 .font-display {
   font-family: var(--font-display);
 }
+
+/* Themes */
+.theme-ocean {
+  --background: #f0f8ff;
+  --foreground: #001f3f;
+  --primary: #0074D9;
+}
+
+.theme-nature {
+  --background: #f4f6f0;
+  --foreground: #2b3a2a;
+  --primary: #2ECC40;
+}
+
+.theme-dark {
+  --background: #111111;
+  --foreground: #eeeeee;
+  --primary: #FF851B;
+}
+
+.theme-ocean body,
+.theme-nature body,
+.theme-dark body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

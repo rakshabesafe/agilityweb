@@ -3,24 +3,38 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Palette } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useSite } from '@/context/SiteContext';
 
 export default function Header() {
   const { setIsCartOpen, cartCount } = useCart();
+  const { config, setConfig } = useSite();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+
+  const handleThemeChange = (theme: string) => {
+    setConfig({ ...config, theme });
+    setIsThemeMenuOpen(false);
+  };
+
+  const themes = [
+    { id: 'default', name: 'Default (Light)' },
+    { id: 'ocean', name: 'Ocean Breeze' },
+    { id: 'nature', name: 'Nature Green' },
+    { id: 'dark', name: 'Dark Mode' }
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/assets/nutrio-logo.png"
+          {/* Use standard img tag as instructed in the plan */}
+          <img
+            src={config.logoUrl}
             alt="Nutrio"
-            width={100}
-            height={48}
             className="h-12 w-auto"
-            priority
+            style={{ objectFit: 'contain' }}
           />
         </Link>
         <nav className="hidden items-center gap-7 lg:flex">
@@ -41,6 +55,30 @@ export default function Header() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
+          <div className="relative">
+            <button
+              onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground hover:bg-gray-100 transition-colors"
+              title="Change Theme"
+            >
+              <Palette className="h-5 w-5" />
+            </button>
+            {isThemeMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                <div className="py-1">
+                  {themes.map((theme) => (
+                    <button
+                      key={theme.id}
+                      onClick={() => handleThemeChange(theme.id)}
+                      className={`block w-full text-left px-4 py-2 text-sm ${config.theme === theme.id ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
+                    >
+                      {theme.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           <button
             onClick={() => setIsCartOpen(true)}
             className="relative inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:opacity-90 bg-orange-600 text-white"
