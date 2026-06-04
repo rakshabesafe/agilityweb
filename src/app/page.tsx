@@ -1,27 +1,13 @@
 import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
+import HeroCarousel from "@/components/HeroCarousel";
 import { products } from "@/data/products";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[oklch(0.97_0.02_90)] px-4 py-20 sm:px-6 lg:px-8 text-center min-h-[80vh] flex flex-col justify-center items-center">
-        <h1 className="font-display text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl mb-6 max-w-4xl mx-auto">
-          Functional Bars rooted in Ayurveda.
-        </h1>
-        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto mb-10">
-          Six functional bars for immunity, energy, focus, stamina, skin glow &amp; women&apos;s wellness. No refined sugar. No preservatives. 100% natural extracts.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link href="/shop" className="rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transition-colors">
-            Shop All Bars
-          </Link>
-          <Link href="/bundles" className="rounded-full bg-white border border-gray-300 px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors">
-            Explore Bundles
-          </Link>
-        </div>
-      </section>
+      {/* Dynamic Hero Section */}
+      <HeroCarousel products={products} />
 
       {/* Featured Products */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl w-full">
