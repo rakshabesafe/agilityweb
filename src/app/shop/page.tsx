@@ -1,7 +1,11 @@
+"use client";
+
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/data/products";
+import { useSite } from "@/context/SiteContext";
 
 export default function ShopPage() {
+  const { products } = useSite();
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">

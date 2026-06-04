@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import HeroCarousel from "@/components/HeroCarousel";
-import { products } from "@/data/products";
+import { useSite } from "@/context/SiteContext";
 
 export default function Home() {
+  const { products } = useSite();
+
   return (
     <div className="flex flex-col">
       {/* Dynamic Hero Section */}

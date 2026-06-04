@@ -1,9 +1,10 @@
 "use client";
 
-import { bundles } from "@/data/products";
+import { useSite } from "@/context/SiteContext";
 import { useCart } from "@/context/CartContext";
 
 export default function BundlesPage() {
+  const { bundles } = useSite();
   const { addToCart } = useCart();
 
   return (
