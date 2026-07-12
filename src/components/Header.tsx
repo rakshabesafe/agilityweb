@@ -42,7 +42,7 @@ export default function Header() {
             Shop Bars
           </Link>
           <Link href="/bundles" className="text-sm font-medium text-foreground/75 transition-colors hover:text-primary">
-            Bundles &amp; Gifting
+            Bundles &amp; Offers
           </Link>
           <Link href="/learn" className="text-sm font-medium text-foreground/75 transition-colors hover:text-primary">
             Learn
@@ -114,7 +114,7 @@ export default function Header() {
             className="text-base font-medium text-foreground transition-colors hover:text-primary"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Bundles &amp; Gifting
+            Bundles &amp; Offers
           </Link>
           <Link
             href="/learn"

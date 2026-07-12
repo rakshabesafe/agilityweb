@@ -36,13 +36,19 @@ export async function POST() {
 
     // 1. Get latest commit SHA
     const refRes = await fetch(`https://api.github.com/repos/${repoPath}/git/refs/heads/main`, { headers });
-    if (!refRes.ok) throw new Error('Failed to fetch main branch reference');
+    if (!refRes.ok) {
+      const errText = await refRes.text();
+      throw new Error(`Failed to fetch main branch reference: ${errText}`);
+    }
     const refData = await refRes.json();
     const latestCommitSha = refData.object.sha;
 
     // 2. Get base tree SHA
     const commitRes = await fetch(`https://api.github.com/repos/${repoPath}/git/commits/${latestCommitSha}`, { headers });
-    if (!commitRes.ok) throw new Error('Failed to fetch latest commit');
+    if (!commitRes.ok) {
+      const errText = await commitRes.text();
+      throw new Error(`Failed to fetch latest commit: ${errText}`);
+    }
     const commitData = await commitRes.json();
     const baseTreeSha = commitData.tree.sha;
 
@@ -78,7 +84,10 @@ export async function POST() {
       headers,
       body: JSON.stringify({ base_tree: baseTreeSha, tree })
     });
-    if (!createTreeRes.ok) throw new Error('Failed to create git tree');
+    if (!createTreeRes.ok) {
+      const errText = await createTreeRes.text();
+      throw new Error(`Failed to create git tree: ${errText}`);
+    }
     const treeData = await createTreeRes.json();
     const newTreeSha = treeData.sha;
 
@@ -92,7 +101,10 @@ export async function POST() {
         parents: [latestCommitSha]
       })
     });
-    if (!createCommitRes.ok) throw new Error('Failed to create commit');
+    if (!createCommitRes.ok) {
+      const errText = await createCommitRes.text();
+      throw new Error(`Failed to create commit: ${errText}`);
+    }
     const newCommitData = await createCommitRes.json();
     const newCommitSha = newCommitData.sha;
 
@@ -102,7 +114,10 @@ export async function POST() {
       headers,
       body: JSON.stringify({ sha: newCommitSha })
     });
-    if (!updateRefRes.ok) throw new Error('Failed to update branch reference');
+    if (!updateRefRes.ok) {
+      const errText = await updateRefRes.text();
+      throw new Error(`Failed to update branch reference: ${errText}`);
+    }
 
     // Clean up draft file now that it's committed
     fs.unlinkSync(DRAFT_FILE);

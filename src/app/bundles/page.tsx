@@ -13,7 +13,7 @@ export default function BundlesPage() {
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
         <h1 className="font-display text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          Bundles &amp; Gifting
+          Bundles &amp; Offers
         </h1>
         <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
           Stock up on your favorites or give the gift of health.
