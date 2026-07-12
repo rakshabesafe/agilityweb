@@ -79,6 +79,18 @@ export async function POST() {
       }
     }
 
+    // Add learn articles
+    if (state.learnArticles) {
+      for (const l of state.learnArticles) {
+        tree.push({
+          path: `public/assets/learn/${l.slug}.json`,
+          mode: '100644',
+          type: 'blob',
+          content: JSON.stringify(l, null, 2)
+        });
+      }
+    }
+
     const createTreeRes = await fetch(`https://api.github.com/repos/${repoPath}/git/trees`, {
       method: 'POST',
       headers,
@@ -96,7 +108,7 @@ export async function POST() {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        message: 'Update products and bundles via Admin Panel',
+        message: 'Update products, bundles, and learn articles via Admin Panel',
         tree: newTreeSha,
         parents: [latestCommitSha]
       })

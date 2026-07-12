@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { products as initialProducts, bundles as initialBundles, Product, Bundle } from '@/data/products';
+import { products as initialProducts, bundles as initialBundles, learnArticles as initialLearnArticles, Product, Bundle, LearnArticle } from '@/data/products';
 
 interface SiteConfig {
   logoUrl: string;
@@ -17,6 +17,8 @@ interface SiteContextType {
   setProducts: (products: Product[]) => void;
   bundles: Bundle[];
   setBundles: (bundles: Bundle[]) => void;
+  learnArticles: LearnArticle[];
+  setLearnArticles: (articles: LearnArticle[]) => void;
   config: SiteConfig;
   setConfig: (config: SiteConfig) => void;
   isLoaded: boolean;
@@ -34,6 +36,7 @@ const SiteContext = createContext<SiteContextType | undefined>(undefined);
 export function SiteProvider({ children }: { children: ReactNode }) {
   const [products, setProductsState] = useState<Product[]>(initialProducts);
   const [bundles, setBundlesState] = useState<Bundle[]>(initialBundles);
+  const [learnArticles, setLearnArticlesState] = useState<LearnArticle[]>(initialLearnArticles);
   const [config, setConfigState] = useState<SiteConfig>(defaultConfig);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,9 +44,18 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     fetch('/api/state')
       .then(res => res.json())
       .then(data => {
-        setProductsState(data.products);
-        setBundlesState(data.bundles);
-        setConfigState({ ...defaultConfig, ...data.config });
+        if (data.products) {
+          setProductsState(data.products);
+        }
+        if (data.bundles) {
+          setBundlesState(data.bundles);
+        }
+        if (data.learnArticles) {
+          setLearnArticlesState(data.learnArticles);
+        }
+        if (data.config) {
+          setConfigState({ ...defaultConfig, ...data.config });
+        }
         setIsLoaded(true);
       })
       .catch(err => {
@@ -67,7 +79,16 @@ export function SiteProvider({ children }: { children: ReactNode }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ bundles: newBundles })
-    });
+    }).catch(err => console.error(err));
+  };
+
+  const setLearnArticles = (newArticles: LearnArticle[]) => {
+    setLearnArticlesState(newArticles);
+    fetch('/api/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ learnArticles: newArticles })
+    }).catch(err => console.error(err));
   };
 
   const setConfig = (newConfig: SiteConfig) => {
@@ -87,7 +108,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   }, [config.theme, isLoaded]);
 
   return (
-    <SiteContext.Provider value={{ products, setProducts, bundles, setBundles, config, setConfig, isLoaded }}>
+    <SiteContext.Provider value={{ products, setProducts, bundles, setBundles, learnArticles, setLearnArticles, config, setConfig, isLoaded }}>
       {children}
     </SiteContext.Provider>
   );

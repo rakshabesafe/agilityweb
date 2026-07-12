@@ -35,6 +35,13 @@ export interface Bundle {
   allowedFlavours?: string[];
 }
 
+export interface LearnArticle {
+  slug: string;
+  name: string;
+  description: string;
+  image?: string;
+}
+
 export const products: Product[] = [
   {
     slug: "immunity-bar",
@@ -166,3 +173,5 @@ export const bundles: Bundle[] = [
     badge: "Best value"
   }
 ];
+
+export const learnArticles: LearnArticle[] = [];
