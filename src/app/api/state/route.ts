@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import { products as initialProducts, bundles as initialBundles } from '@/data/products';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 
 // For draft state without committing to git instantly, we'll write to a file in /tmp/
-const DRAFT_FILE = '/tmp/nutrio_draft.json';
+const DRAFT_FILE = path.join(os.tmpdir(), 'nutrio_draft.json');
 
 function readDB() {
   // 1. Try reading the draft file first

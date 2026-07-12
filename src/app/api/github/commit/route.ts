@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
+import path from 'path';
+import os from 'os';
 
-const DRAFT_FILE = '/tmp/nutrio_draft.json';
+const DRAFT_FILE = path.join(os.tmpdir(), 'nutrio_draft.json');
 
 export async function POST() {
   try {
