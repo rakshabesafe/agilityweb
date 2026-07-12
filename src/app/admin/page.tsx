@@ -42,6 +42,11 @@ export default function AdminPage() {
             Shiprocket Config
           </button>
         </nav>
+        <div className="p-4 border-t border-gray-800">
+          <a href="/api/auth/signout" className="block w-full text-center px-4 py-2 rounded-md text-gray-300 hover:bg-gray-800 transition-colors">
+            Sign Out
+          </a>
+        </div>
       </div>
 
       {/* Main Content */}
