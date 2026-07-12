@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useSite } from "@/context/SiteContext";
-import { useCart } from "@/context/CartContext";
+import { Bundle } from "@/data/products";
+import FlavorSelectionModal from "@/components/FlavorSelectionModal";
 
 export default function BundlesPage() {
   const { bundles } = useSite();
-  const { addToCart } = useCart();
+  const [selectedBundle, setSelectedBundle] = useState<Bundle | null>(null);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -40,15 +42,21 @@ export default function BundlesPage() {
               </div>
 
               <button
-                onClick={() => addToCart(bundle, 'bundle')}
+                onClick={() => setSelectedBundle(bundle)}
                 className="w-full rounded-full bg-gray-900 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
               >
-                Add to Cart
+                Choose Flavors
               </button>
             </div>
           </div>
         ))}
       </div>
+      
+      <FlavorSelectionModal 
+        isOpen={!!selectedBundle} 
+        onClose={() => setSelectedBundle(null)} 
+        bundle={selectedBundle} 
+      />
     </div>
   );
 }

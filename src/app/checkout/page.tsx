@@ -215,7 +215,19 @@ export default function CheckoutPage() {
                         <h3>{item.name}</h3>
                         <p className="ml-4">₹{item.price * item.quantity}</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500 capitalize">{item.type}</p>
+                      <div className="mt-1">
+                        <p className="text-sm text-gray-500 capitalize">{item.type}</p>
+                        {item.selectedFlavors && (
+                          <ul className="mt-2 space-y-1.5">
+                            {item.selectedFlavors.map((flavor) => (
+                              <li key={flavor.slug} className="text-xs text-gray-500 flex items-center gap-2">
+                                <span className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-[10px] font-bold text-gray-700">{flavor.quantity}</span>
+                                <span className="truncate">{flavor.name}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <p className="text-gray-500">Qty {item.quantity}</p>

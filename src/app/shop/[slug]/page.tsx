@@ -1,16 +1,24 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { useSite } from "@/context/SiteContext";
 import { useCart } from "@/context/CartContext";
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const { addToCart } = useCart();
-
+  const { products } = useSite();
+  
   const product = products.find((p) => p.slug === slug);
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (product) {
+      setCurrentImage(product.image);
+    }
+  }, [product]);
 
   if (!product) {
     return (
@@ -26,17 +34,37 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-8">
-        {/* Product Image */}
-        <div className={`aspect-square overflow-hidden rounded-2xl ${product.bgClass} flex items-center justify-center relative`}>
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-cover"
-            />
-          ) : (
-             <span className="text-3xl font-bold text-gray-500">{product.name}</span>
+        {/* Product Image Gallery */}
+        <div className="flex flex-col gap-4">
+          <div className={`aspect-square overflow-hidden rounded-2xl ${product.bgClass} flex items-center justify-center relative`}>
+            {currentImage ? (
+              <Image
+                src={currentImage}
+                alt={product.name}
+                fill
+                className="object-cover"
+              />
+            ) : (
+               <span className="text-3xl font-bold text-gray-500">{product.name}</span>
+            )}
+          </div>
+          
+          {/* Thumbnails */}
+          {product.backImage && (
+            <div className="flex gap-4 mt-2">
+              <button 
+                onClick={() => setCurrentImage(product.image)}
+                className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 ${currentImage === product.image ? 'border-orange-500' : 'border-transparent'}`}
+              >
+                <Image src={product.image} alt="Front" fill className="object-cover" />
+              </button>
+              <button 
+                onClick={() => setCurrentImage(product.backImage!)}
+                className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 ${currentImage === product.backImage ? 'border-orange-500' : 'border-transparent'}`}
+              >
+                <Image src={product.backImage} alt="Back" fill className="object-cover" />
+              </button>
+            </div>
           )}
         </div>
 

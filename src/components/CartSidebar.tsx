@@ -72,7 +72,19 @@ export default function CartSidebar() {
                       <h4 className="line-clamp-2"><Link href={`/shop/${item.slug}`} onClick={() => setIsCartOpen(false)}>{item.name}</Link></h4>
                       <p className="ml-4">₹{item.price * item.quantity}</p>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500 capitalize">{item.type}</p>
+                    <div className="mt-1">
+                      <p className="text-sm text-gray-500 capitalize">{item.type}</p>
+                      {item.selectedFlavors && (
+                        <ul className="mt-2 space-y-1.5">
+                          {item.selectedFlavors.map((flavor) => (
+                            <li key={flavor.slug} className="text-xs text-gray-500 flex items-center gap-2">
+                              <span className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-[10px] font-bold text-gray-700">{flavor.quantity}</span>
+                              <span className="truncate">{flavor.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
 
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="flex items-center rounded-full border border-gray-200">

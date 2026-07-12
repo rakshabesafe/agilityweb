@@ -5,6 +5,12 @@ import { Product, Bundle } from '@/data/products';
 
 export type CartItemType = 'product' | 'bundle';
 
+export interface SelectedFlavor {
+  slug: string;
+  name: string;
+  quantity: number;
+}
+
 export interface CartItem {
   id: string;
   name: string;
@@ -13,11 +19,12 @@ export interface CartItem {
   quantity: number;
   type: CartItemType;
   slug: string;
+  selectedFlavors?: SelectedFlavor[];
 }
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (item: Product | Bundle, type: CartItemType, image?: string) => void;
+  addToCart: (item: Product | Bundle, type: CartItemType, image?: string, selectedFlavors?: SelectedFlavor[]) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   cartTotal: number;
@@ -32,12 +39,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (item: Product | Bundle, type: CartItemType, image?: string) => {
+  const addToCart = (item: Product | Bundle, type: CartItemType, image?: string, selectedFlavors?: SelectedFlavor[]) => {
     setItems((prevItems) => {
-      const existingItem = prevItems.find((i) => i.id === item.slug);
+      const selectionsStr = selectedFlavors 
+        ? [...selectedFlavors].sort((a, b) => a.slug.localeCompare(b.slug)).map(f => `${f.slug}-${f.quantity}`).join('_')
+        : '';
+      const uniqueId = selectionsStr ? `${item.slug}_${selectionsStr}` : item.slug;
+
+      const existingItem = prevItems.find((i) => i.id === uniqueId);
       if (existingItem) {
         return prevItems.map((i) =>
-          i.id === item.slug ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === uniqueId ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       return [
@@ -50,6 +62,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           type,
           slug: item.slug,
           image,
+          selectedFlavors,
         },
       ];
     });
