@@ -91,6 +91,16 @@ export async function POST() {
       }
     }
 
+    // Add about content
+    if (state.aboutContent) {
+      tree.push({
+        path: `public/assets/about.json`,
+        mode: '100644',
+        type: 'blob',
+        content: JSON.stringify(state.aboutContent, null, 2)
+      });
+    }
+
     const createTreeRes = await fetch(`https://api.github.com/repos/${repoPath}/git/trees`, {
       method: 'POST',
       headers,
@@ -108,7 +118,7 @@ export async function POST() {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        message: 'Update products, bundles, and learn articles via Admin Panel',
+        message: 'Update products, bundles, learn articles, and about page via Admin Panel',
         tree: newTreeSha,
         parents: [latestCommitSha]
       })

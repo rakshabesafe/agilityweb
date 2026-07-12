@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { products as initialProducts, bundles as initialBundles, learnArticles as initialLearnArticles } from '@/data/products';
+import { products as initialProducts, bundles as initialBundles, learnArticles as initialLearnArticles, initialAboutContent } from '@/data/products';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -48,10 +48,17 @@ function readDB() {
       }
     }
 
+    let aboutContent = null;
+    const aboutFile = path.join(process.cwd(), 'public', 'assets', 'about.json');
+    if (fs.existsSync(aboutFile)) {
+      aboutContent = JSON.parse(fs.readFileSync(aboutFile, 'utf8'));
+    }
+
     return {
       products: products.length > 0 ? products : initialProducts,
       bundles: bundles.length > 0 ? bundles : initialBundles,
       learnArticles: learnArticles.length > 0 ? learnArticles : initialLearnArticles,
+      aboutContent: aboutContent || initialAboutContent,
       config: {
         logoUrl: '/assets/nutrio-logo.png',
         bannerText: 'Welcome to Nutrio!',
@@ -67,6 +74,7 @@ function readDB() {
       products: initialProducts,
       bundles: initialBundles,
       learnArticles: initialLearnArticles,
+      aboutContent: initialAboutContent,
       config: {
         logoUrl: '/assets/nutrio-logo.png',
         bannerText: 'Welcome to Nutrio!',
@@ -112,6 +120,7 @@ export async function POST(request: Request) {
       products: body.products || currentState.products,
       bundles: body.bundles || currentState.bundles,
       learnArticles: body.learnArticles || currentState.learnArticles,
+      aboutContent: body.aboutContent || currentState.aboutContent,
       config: {
         ...currentState.config,
         ...(body.config || {})

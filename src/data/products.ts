@@ -42,6 +42,14 @@ export interface LearnArticle {
   image?: string;
 }
 
+export interface AboutContent {
+  title: string;
+  subtitle: string;
+  storyTitle: string;
+  storyText: string;
+  imageUrl?: string;
+}
+
 export const products: Product[] = [
   {
     slug: "immunity-bar",
@@ -175,3 +183,11 @@ export const bundles: Bundle[] = [
 ];
 
 export const learnArticles: LearnArticle[] = [];
+
+export const initialAboutContent: AboutContent = {
+  title: "About Nutrio",
+  subtitle: "We believe in functional nutrition rooted in Ayurveda.",
+  storyTitle: "Our Story",
+  storyText: "Content coming soon.",
+  imageUrl: ""
+};

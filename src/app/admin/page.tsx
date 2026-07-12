@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ProductList from '@/components/admin/ProductList';
 import BundleList from '@/components/admin/BundleList';
 import LearnList from '@/components/admin/LearnList';
+import AboutForm from '@/components/admin/AboutForm';
 import SettingsForm from '@/components/admin/SettingsForm';
 import ShiprocketForm from '@/components/admin/ShiprocketForm';
 
@@ -35,6 +36,12 @@ export default function AdminPage() {
             className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'learn' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
           >
             Learn Content
+          </button>
+          <button
+            onClick={() => setActiveTab('about')}
+            className={`w-full text-left px-4 py-2 rounded-md ${activeTab === 'about' ? 'bg-orange-600 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+          >
+            About Content
           </button>
           <button
             onClick={() => setActiveTab('settings')}
@@ -78,6 +85,7 @@ export default function AdminPage() {
           {activeTab === 'products' && <ProductList />}
           {activeTab === 'bundles' && <BundleList />}
           {activeTab === 'learn' && <LearnList />}
+          {activeTab === 'about' && <AboutForm />}
           {activeTab === 'settings' && <SettingsForm />}
           {activeTab === 'shiprocket' && <ShiprocketForm />}
         </main>
