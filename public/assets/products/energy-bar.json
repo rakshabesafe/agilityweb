@@ -1,0 +1,58 @@
+{
+  "slug": "energy-bar",
+  "name": "Nuttrio Energy Bar",
+  "tagline": "Fuel your body, power your day.",
+  "shortDesc": "Long-lasting energy from Ashwagandha & ancient grains.",
+  "longDesc": "A clean blend of nuts, seeds and ancient grains, naturally sweetened for balanced, long-lasting energy. Powered by functional botanicals like Ashwagandha, Yashtimadhu and Tulsi, and enhanced with warming spices and natural apple notes — it supports stamina, alertness and everyday vitality.",
+  "benefits": [
+    "Sustained, balanced energy",
+    "No sugar crash",
+    "Boosts focus & alertness",
+    "Pre/post workout friendly"
+  ],
+  "bestFor": [
+    "Students",
+    "Office workers",
+    "Gym-goers",
+    "Travelers"
+  ],
+  "hero": [
+    "Ashwagandha",
+    "Yashtimadhu",
+    "Tulsi",
+    "Ancient Grains"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "170 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "5 g"
+    },
+    {
+      "label": "Fiber",
+      "value": "4 g"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Oats",
+    "Almonds",
+    "Pumpkin Seeds",
+    "Dates",
+    "Apple",
+    "Ashwagandha",
+    "Cinnamon"
+  ],
+  "image": "/assets/Nuttrio-Energy-Bar-front.jpg",
+  "backImage": "/assets/Nuttrio-Energy-Bar-back.jpg",
+  "accent": "--energy",
+  "bgClass": "bg-[oklch(0.96_0.10_70)]",
+  "price": 79,
+  "mrp": 79
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "skincare-bar",
+  "name": "Nuttrio Skincare Bar",
+  "tagline": "Beautiful skin, one delicious bar at a time.",
+  "shortDesc": "Glow from within with Turmeric, Shatavari & Yashtimadhu.",
+  "longDesc": "A nourishing blend of nuts, seeds and nutrient-rich grains, naturally sweetened for clean, sustained energy. Infused with Ayurvedic botanicals like Shatavari, Turmeric and Yashtimadhu, and antioxidant-rich ingredients — it supports skin health, hydration and overall wellness.",
+  "benefits": [
+    "Promotes a natural glow",
+    "Antioxidant rich — fights free radicals",
+    "Supports skin hydration",
+    "Clean, sustained energy"
+  ],
+  "bestFor": [
+    "Teens & college students",
+    "Beauty-conscious adults",
+    "Anyone with dull, tired skin"
+  ],
+  "hero": [
+    "Turmeric",
+    "Shatavari",
+    "Yashtimadhu",
+    "Antioxidants"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "150 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "5 g"
+    },
+    {
+      "label": "Fiber",
+      "value": "3 g"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Almonds",
+    "Sunflower Seeds",
+    "Oats",
+    "Dates",
+    "Honey",
+    "Turmeric",
+    "Shatavari",
+    "Yashtimadhu"
+  ],
+  "image": "/assets/Nuttrio-Skincare-Bar-front.jpg",
+  "backImage": "/assets/Nuttrio-Skincare-Bar-back.jpg",
+  "accent": "--skin",
+  "bgClass": "bg-[oklch(0.95_0.04_15)]",
+  "price": 79,
+  "mrp": 79
+}

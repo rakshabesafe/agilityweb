@@ -18,13 +18,21 @@ export default function BundleForm({ bundle, onSave, onCancel }: BundleFormProps
       items: 0,
       price: 0,
       mrp: 0,
-      badge: ""
+      badge: "",
+      image: "",
+      longDesc: "",
+      allowedFlavours: []
     }
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Bundle) => {
+    const value = e.target.value.split(",").map((s) => s.trim());
+    setFormData({ ...formData, [field]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -62,8 +70,23 @@ export default function BundleForm({ bundle, onSave, onCancel }: BundleFormProps
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Description</label>
-        <textarea required name="desc" value={formData.desc || ""} onChange={handleChange} rows={3} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+        <label className="block text-sm font-medium text-gray-700">Image URL</label>
+        <input type="text" name="image" value={formData.image || ""} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Short Description</label>
+        <textarea required name="desc" value={formData.desc || ""} onChange={handleChange} rows={2} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Long Description</label>
+        <textarea name="longDesc" value={formData.longDesc || ""} onChange={handleChange} rows={3} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Allowed Flavours (comma separated slugs)</label>
+        <input type="text" value={formData.allowedFlavours?.join(", ") || ""} onChange={(e) => handleArrayChange(e, "allowedFlavours")} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
       </div>
 
       <div className="flex gap-4 pt-4">

@@ -23,6 +23,7 @@ export default function ProductForm({ product, onSave, onCancel }: ProductFormPr
       nutrition: [],
       ingredients: [],
       image: "",
+      backImage: "",
       accent: "--default",
       bgClass: "bg-gray-100",
       price: 0,
@@ -72,13 +73,28 @@ export default function ProductForm({ product, onSave, onCancel }: ProductFormPr
       </div>
 
       <div>
+        <label className="block text-sm font-medium text-gray-700">Back Image URL</label>
+        <input type="text" name="backImage" value={formData.backImage || ""} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
         <label className="block text-sm font-medium text-gray-700">Short Description</label>
         <input required type="text" name="shortDesc" value={formData.shortDesc || ""} onChange={handleChange} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
       </div>
 
       <div>
+        <label className="block text-sm font-medium text-gray-700">Long Description</label>
+        <textarea required name="longDesc" value={formData.longDesc || ""} onChange={handleChange} rows={3} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
         <label className="block text-sm font-medium text-gray-700">Ingredients (comma separated)</label>
         <input type="text" value={formData.ingredients?.join(", ") || ""} onChange={(e) => handleArrayChange(e, "ingredients")} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Key Benefits (comma separated)</label>
+        <input type="text" value={formData.benefits?.join(", ") || ""} onChange={(e) => handleArrayChange(e, "benefits")} className="mt-1 block w-full rounded-md border border-gray-300 p-2 text-black" />
       </div>
 
       <div className="flex gap-4 pt-4">

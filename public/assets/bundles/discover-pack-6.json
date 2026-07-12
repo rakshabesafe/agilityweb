@@ -1,0 +1,19 @@
+{
+  "slug": "discover-pack-6",
+  "name": "Discover Pack — Any 6 Flavours",
+  "desc": "One of each bar or mix and match 6. The easiest way to try the entire functional family.",
+  "items": 6,
+  "price": 389,
+  "mrp": 474,
+  "badge": "Best value",
+  "image": "",
+  "longDesc": "Mix and match any 6 of our functional nutrition bars for a complete experience.",
+  "allowedFlavours": [
+    "immunity-bar",
+    "skincare-bar",
+    "energy-bar",
+    "shecare-bar",
+    "memory-bar",
+    "stamina-bar"
+  ]
+}

@@ -46,8 +46,21 @@ export default function AdminPage() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-white border-b border-gray-200 p-4">
+        <header className="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
           <h2 className="text-xl font-semibold text-gray-800 capitalize">{activeTab} Management</h2>
+          <button
+            onClick={async () => {
+              if (confirm("Are you sure you want to commit all changes to GitHub?")) {
+                const res = await fetch('/api/github/commit', { method: 'POST' });
+                const data = await res.json();
+                if (data.error) alert(`Error: ${data.error}`);
+                else alert(data.message);
+              }
+            }}
+            className="bg-gray-900 text-white px-4 py-2 rounded-md font-semibold text-sm hover:bg-gray-800 transition-colors flex items-center gap-2"
+          >
+            <span>Commit & Push to Git</span>
+          </button>
         </header>
         <main className="flex-1 overflow-y-auto p-6">
           {activeTab === 'products' && <ProductList />}

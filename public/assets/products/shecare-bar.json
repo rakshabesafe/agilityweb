@@ -1,0 +1,58 @@
+{
+  "slug": "shecare-bar",
+  "name": "Nuttrio SheCare Bar",
+  "tagline": "Natural care for women — every bite, every day.",
+  "shortDesc": "Built for her — with Shatavari, iron & folate.",
+  "longDesc": "A clean, nourishing blend of superfoods, seeds, grains and Ayurvedic Shatavari, naturally sweetened with dates and honey. Enriched with protein, iron and folate — it supports everyday wellness and vitality for women across every life stage.",
+  "benefits": [
+    "Supports hormonal balance",
+    "Iron & folate for energy",
+    "Cycle-friendly nutrition",
+    "Daily strength & vitality"
+  ],
+  "bestFor": [
+    "Teen girls",
+    "Working women",
+    "New & expecting mothers",
+    "Women 40+"
+  ],
+  "hero": [
+    "Shatavari",
+    "Iron",
+    "Folate",
+    "Protein"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "150 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "5 g"
+    },
+    {
+      "label": "Iron",
+      "value": "30% RDA"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Almonds",
+    "Flax Seeds",
+    "Oats",
+    "Dates",
+    "Honey",
+    "Shatavari",
+    "Cranberries"
+  ],
+  "image": "/assets/Nuttrio-SheCare-Bar-front.jpg",
+  "backImage": "/assets/Nuttrio-SheCare-Bar-back.jpg",
+  "accent": "--she",
+  "bgClass": "bg-[oklch(0.93_0.06_5)]",
+  "price": 79,
+  "mrp": 79
+}

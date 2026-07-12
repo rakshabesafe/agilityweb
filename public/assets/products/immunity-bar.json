@@ -1,0 +1,59 @@
+{
+  "slug": "immunity-bar",
+  "name": "Nuttrio Immunity Bar",
+  "tagline": "Strengthen your defenses, naturally.",
+  "shortDesc": "Daily defense built on Amla, Tulsi & Shatavari.",
+  "longDesc": "A functional nutrition bar made with nuts, seeds and super grains, naturally sweetened with dates and honey. Powered by Ayurvedic botanicals like Amla, Tulsi and Shatavari, and enriched with prebiotics, calcium and zinc — it supports immunity, gut health and everyday vitality.",
+  "benefits": [
+    "Supports immune defense",
+    "Promotes gut & digestive health",
+    "Rich in antioxidants (Vitamin C)",
+    "Adds calcium & zinc to your day"
+  ],
+  "bestFor": [
+    "School kids",
+    "Working professionals",
+    "Daily wellness seekers",
+    "Anyone falling sick often"
+  ],
+  "hero": [
+    "Amla",
+    "Tulsi",
+    "Shatavari",
+    "Prebiotics"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "150 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "5 g"
+    },
+    {
+      "label": "Fiber",
+      "value": "3 g"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Almonds",
+    "Pumpkin Seeds",
+    "Oats",
+    "Dates",
+    "Honey",
+    "Amla",
+    "Tulsi",
+    "Shatavari"
+  ],
+  "image": "/assets/Nuttrio-Immunity-Bar-Frontside.jpg",
+  "backImage": "/assets/Nuttrio-Immunity-Bar-Back-side.jpg",
+  "accent": "--immunity",
+  "bgClass": "bg-[oklch(0.97_0.07_85)]",
+  "price": 79,
+  "mrp": 79
+}

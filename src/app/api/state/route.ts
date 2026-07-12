@@ -1,52 +1,89 @@
 import { NextResponse } from 'next/server';
 import { products as initialProducts, bundles as initialBundles } from '@/data/products';
 import fs from 'fs';
+import path from 'path';
 
-// For prototype persistence without a database, we'll write to a file in /tmp/
-const DB_FILE = '/tmp/nutrio_db.json';
+// For draft state without committing to git instantly, we'll write to a file in /tmp/
+const DRAFT_FILE = '/tmp/nutrio_draft.json';
 
 function readDB() {
+  // 1. Try reading the draft file first
   try {
-    if (fs.existsSync(DB_FILE)) {
-      const data = fs.readFileSync(DB_FILE, 'utf8');
+    if (fs.existsSync(DRAFT_FILE)) {
+      const data = fs.readFileSync(DRAFT_FILE, 'utf8');
       return JSON.parse(data);
     }
   } catch (err) {
-    console.error("Error reading DB:", err);
+    console.error("Error reading Draft:", err);
   }
 
-  // Default State
-  return {
-    products: initialProducts,
-    bundles: initialBundles,
-    config: {
-      logoUrl: '/assets/nutrio-logo.png',
-      bannerText: 'Welcome to Nutrio!',
-      bannerEnabled: false,
-      theme: 'default',
-      shiprocketEmail: '',
-      shiprocketPassword: ''
+  // 2. Fallback to reading from the public/assets JSON files
+  try {
+    const productsDir = path.join(process.cwd(), 'public', 'assets', 'products');
+    const bundlesDir = path.join(process.cwd(), 'public', 'assets', 'bundles');
+
+    const products = [];
+    if (fs.existsSync(productsDir)) {
+      const pFiles = fs.readdirSync(productsDir).filter(f => f.endsWith('.json'));
+      for (const file of pFiles) {
+        products.push(JSON.parse(fs.readFileSync(path.join(productsDir, file), 'utf8')));
+      }
     }
-  };
+
+    const bundles = [];
+    if (fs.existsSync(bundlesDir)) {
+      const bFiles = fs.readdirSync(bundlesDir).filter(f => f.endsWith('.json'));
+      for (const file of bFiles) {
+        bundles.push(JSON.parse(fs.readFileSync(path.join(bundlesDir, file), 'utf8')));
+      }
+    }
+
+    return {
+      products: products.length > 0 ? products : initialProducts,
+      bundles: bundles.length > 0 ? bundles : initialBundles,
+      config: {
+        logoUrl: '/assets/nutrio-logo.png',
+        bannerText: 'Welcome to Nutrio!',
+        bannerEnabled: false,
+        theme: 'default',
+        shiprocketEmail: '',
+        shiprocketPassword: ''
+      }
+    };
+  } catch (err) {
+    console.error("Error reading JSON files:", err);
+    return {
+      products: initialProducts,
+      bundles: initialBundles,
+      config: {
+        logoUrl: '/assets/nutrio-logo.png',
+        bannerText: 'Welcome to Nutrio!',
+        bannerEnabled: false,
+        theme: 'default',
+        shiprocketEmail: '',
+        shiprocketPassword: ''
+      }
+    };
+  }
 }
 
 function writeDB(data: unknown) {
   try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+    fs.writeFileSync(DRAFT_FILE, JSON.stringify(data, null, 2));
   } catch (err) {
-    console.error("Error writing DB:", err);
+    console.error("Error writing Draft DB:", err);
   }
 }
 
 export async function GET() {
   const state = readDB();
 
-  // Create a copy without the password to send to the client context
+  // Create a copy without the passwords to send to the client context
   const clientState = {
     ...state,
     config: {
       ...state.config,
-      shiprocketPassword: state.config.shiprocketPassword ? "********" : "" // Obscure password for client config reads
+      shiprocketPassword: state.config.shiprocketPassword ? "********" : "", // Obscure password for client config reads
     }
   };
 

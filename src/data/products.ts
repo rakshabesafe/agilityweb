@@ -30,6 +30,9 @@ export interface Bundle {
   price: number;
   mrp: number;
   badge: string;
+  image?: string;
+  longDesc?: string;
+  allowedFlavours?: string[];
 }
 
 export const products: Product[] = [

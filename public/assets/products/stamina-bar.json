@@ -1,0 +1,59 @@
+{
+  "slug": "stamina-bar",
+  "name": "Nuttrio Stamina Bar",
+  "tagline": "Power your performance, naturally.",
+  "shortDesc": "Built for endurance with Shilajit & Ashwagandha.",
+  "longDesc": "A functional nutrition bar made with nuts, seeds and ancient grains, naturally sweetened with dates and honey. Enriched with Ayurvedic adaptogens like Shilajit, Ashwagandha and Shatavari — it delivers clean, sustained energy, supports stamina, strength and faster recovery.",
+  "benefits": [
+    "Boosts stamina & endurance",
+    "Faster post-workout recovery",
+    "Strength & vitality support",
+    "Adaptogen powered"
+  ],
+  "bestFor": [
+    "Athletes",
+    "Gym-goers",
+    "Active professionals",
+    "Endurance enthusiasts"
+  ],
+  "hero": [
+    "Shilajit",
+    "Ashwagandha",
+    "Shatavari",
+    "Ancient Grains"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "180 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "6 g"
+    },
+    {
+      "label": "Fiber",
+      "value": "4 g"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Almonds",
+    "Peanuts",
+    "Oats",
+    "Dates",
+    "Honey",
+    "Shilajit",
+    "Ashwagandha",
+    "Shatavari"
+  ],
+  "image": "/assets/Nuttrio-Stamina-Bar-front.jpg",
+  "backImage": "/assets/Nuttrio-Stamina-Bar-back.jpg",
+  "accent": "--stamina",
+  "bgClass": "bg-[oklch(0.92_0.04_150)]",
+  "price": 79,
+  "mrp": 79
+}

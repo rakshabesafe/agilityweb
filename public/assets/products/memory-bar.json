@@ -1,0 +1,58 @@
+{
+  "slug": "memory-bar",
+  "name": "Nuttrio Memory Bar",
+  "tagline": "Fuel your mind, naturally.",
+  "shortDesc": "Brain food with Omega-3, Brahmi & Ashwagandha.",
+  "longDesc": "A functional nutrition bar made with nuts, seeds and nutrient-dense grains, naturally sweetened with dates and honey. Enriched with Omega-3 (EPA & DHA) and neuro-supportive botanicals like Brahmi and Ashwagandha — it supports brain health, focus and memory with balanced everyday nutrition.",
+  "benefits": [
+    "Supports focus & memory",
+    "Omega-3 for brain health",
+    "Reduces mental fatigue",
+    "Great for study & deep work"
+  ],
+  "bestFor": [
+    "School kids",
+    "Students preparing for exams",
+    "Knowledge workers",
+    "Seniors"
+  ],
+  "hero": [
+    "Brahmi",
+    "Ashwagandha",
+    "Omega-3",
+    "Walnuts"
+  ],
+  "nutrition": [
+    {
+      "label": "Energy",
+      "value": "160 kcal"
+    },
+    {
+      "label": "Plant Protein",
+      "value": "5 g"
+    },
+    {
+      "label": "Omega-3",
+      "value": "Yes"
+    },
+    {
+      "label": "Added Sugar",
+      "value": "0 g"
+    }
+  ],
+  "ingredients": [
+    "Walnuts",
+    "Flax Seeds",
+    "Oats",
+    "Dates",
+    "Honey",
+    "Brahmi",
+    "Ashwagandha"
+  ],
+  "image": "/assets/Nuttrio-Memory-Bar-front.jpg",
+  "backImage": "/assets/Nuttrio-Memory-Bar-back.jpg",
+  "accent": "--memory",
+  "bgClass": "bg-[oklch(0.93_0.08_275)]",
+  "price": 79,
+  "mrp": 79
+}
